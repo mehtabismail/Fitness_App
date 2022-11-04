@@ -13,7 +13,7 @@ import {validateEmptyFields} from '../../utils/formValidator';
 import isEmpty from '../../utils/isEmpty';
 import auth from '@react-native-firebase/auth';
 import navigationStrings from '../../constants/navigationStrings';
-import { storeAuth } from '../../redux/reducers/auth/AuthSlice';
+import {storeAuth} from '../../redux/reducers/auth/AuthSlice';
 
 const SignupForm = ({navigation}: NavigationProp) => {
   const [formData, setFormData] = useState<SignupProp>({
