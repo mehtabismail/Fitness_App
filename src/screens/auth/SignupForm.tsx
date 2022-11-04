@@ -70,38 +70,6 @@ const SignupForm = ({navigation}: NavigationProp) => {
   };
   return (
     <View style={styles.mainContainer}>
-      {/* <View>
-        <CustomTextInput
-          placeholder="First Name"
-          placeholderTextColor={Colors.PrimaryTextColor}
-          keyboardType="default"
-          disabled="false"
-          fieldName={'firstName'}
-          secureTextEntry={false}
-          handleChangeInput={handleChangeInput}
-          passShowHide={false}
-          error={errors.firstName && errors.firstName}
-          removeError={removeError}
-          flag=""
-          screen="Signup"
-        />
-      </View>
-      <View>
-        <CustomTextInput
-          placeholder="Last Name"
-          placeholderTextColor={Colors.PrimaryTextColor}
-          keyboardType="default"
-          disabled="false"
-          fieldName={'lastName'}
-          secureTextEntry={false}
-          handleChangeInput={handleChangeInput}
-          passShowHide={false}
-          error={errors.lastName && errors.lastName}
-          removeError={removeError}
-          flag=""
-          screen="Signup"
-        />
-      </View> */}
       <View>
         <CustomTextInput
           placeholder="Email*"
