@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "437392214251",
+    "project_id": "fitness-app-kfueit",
+    "storage_bucket": "fitness-app-kfueit.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:437392214251:android:a3e5bc4a02423cc65016ae",
+        "android_client_info": {
+          "package_name": "com.typescript_boilerplate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "437392214251-9ist52bkh0mfcv94h4c5rh6b26frcpd3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMMzWBCtPyHV_dvVYakaDRck1bn29KDAk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "437392214251-9ist52bkh0mfcv94h4c5rh6b26frcpd3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
