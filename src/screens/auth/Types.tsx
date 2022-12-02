@@ -4,8 +4,8 @@ export interface LoginProp {
 }
 
 export interface SignupProp {
-  // firstName: string;
-  // lastName: string;
+  firstName: string;
+  lastName: string;
   email: string;
   // contact: string;
   // country: string;

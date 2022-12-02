@@ -14,14 +14,19 @@ import isEmpty from '../../utils/isEmpty';
 import auth from '@react-native-firebase/auth';
 import navigationStrings from '../../constants/navigationStrings';
 import {storeAuth} from '../../redux/reducers/auth/AuthSlice';
+import firestore from '@react-native-firebase/firestore';
 
 const SignupForm = ({navigation}: NavigationProp) => {
   const [formData, setFormData] = useState<SignupProp>({
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
   });
   const [errors, setErrors] = useState<any>({});
   const errorMessages = {
+    firstName: 'First name',
+    lastName: 'Last name',
     email: 'Email',
     password: 'Password',
   };
@@ -46,11 +51,18 @@ const SignupForm = ({navigation}: NavigationProp) => {
         dispatch(startLoading());
         auth()
           .createUserWithEmailAndPassword(formData.email, formData.password)
-          .then(res => {
-            console.log(res, 'User account created & signed in!');
-            dispatch(storeAuth(res));
-            dispatch(stopLoading());
-            navigation.replace(navigationStrings.DRAWER);
+          .then(async res => {
+            firestore()
+              .collection('users')
+              .doc(res.user.uid)
+              .set({
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                email: formData.email,
+              })
+              .then(() => {
+                console.log('User added!');
+              });
           })
           .catch(error => {
             if (error.code === 'auth/email-already-in-use') {
@@ -70,6 +82,38 @@ const SignupForm = ({navigation}: NavigationProp) => {
   };
   return (
     <View style={styles.mainContainer}>
+      <View>
+        <CustomTextInput
+          placeholder="First Name"
+          placeholderTextColor={Colors.PrimaryTextColor}
+          keyboardType="default"
+          disabled="false"
+          fieldName={'firstName'}
+          secureTextEntry={false}
+          handleChangeInput={handleChangeInput}
+          passShowHide={false}
+          error={errors.firstName && errors.firstName}
+          removeError={removeError}
+          flag=""
+          screen="Signup"
+        />
+      </View>
+      <View>
+        <CustomTextInput
+          placeholder="Last Name"
+          placeholderTextColor={Colors.PrimaryTextColor}
+          keyboardType="default"
+          disabled="false"
+          fieldName={'lastName'}
+          secureTextEntry={false}
+          handleChangeInput={handleChangeInput}
+          passShowHide={false}
+          error={errors.lastName && errors.lastName}
+          removeError={removeError}
+          flag=""
+          screen="Signup"
+        />
+      </View>
       <View>
         <CustomTextInput
           placeholder="Email*"

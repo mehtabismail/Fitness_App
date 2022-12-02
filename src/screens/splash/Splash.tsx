@@ -6,6 +6,7 @@ import navigationStrings from '../../constants/navigationStrings';
 import auth from '@react-native-firebase/auth';
 import CustomButton from '../../components/CustomButton';
 import Colors from '../../theme/Colors';
+import LinearGradient from 'react-native-linear-gradient';
 
 // MAIN FUNCTION
 const Splash = ({navigation}: any): JSX.Element => {
@@ -22,7 +23,7 @@ const Splash = ({navigation}: any): JSX.Element => {
         navigation.replace(navigationStrings.LOGIN);
       }, 0);
     } else {
-      navigation.replace(navigationStrings.DRAWER);
+      navigation.replace(navigationStrings.BOTTOM_TABS);
     }
     if (initializing) {
       setInitializing(false);
@@ -40,22 +41,24 @@ const Splash = ({navigation}: any): JSX.Element => {
 
   return (
     <SafeAreaView style={mainStyle}>
-      <ImageBackground
-        source={require('../../assets/Images/splash3.jpeg')}
-        resizeMode="cover"
-        style={styles.imageStyle}>
-        <View style={styles.container}>
-          <View style={styles.viewstyle}>
-            <CustomButton
-              buttonText={'Shape yourself'}
-              buttonTextColor={'white'}
-              onPressHandler={clickHandler}
-              isLoadingButton={true}
-              backgroundColor={Colors.Primary}
-            />
+      <LinearGradient colors={['#01D1FB', '#3E30A1']}>
+        <ImageBackground
+          source={require('../../assets/Images/bgImage.png')}
+          resizeMode="cover"
+          style={styles.imageStyle}>
+          <View style={styles.container}>
+            <View style={styles.viewstyle}>
+              <CustomButton
+                buttonText={'Shape yourself'}
+                buttonTextColor={'white'}
+                onPressHandler={clickHandler}
+                isLoadingButton={true}
+                backgroundColor={Colors.Primary}
+              />
+            </View>
           </View>
-        </View>
-      </ImageBackground>
+        </ImageBackground>
+      </LinearGradient>
     </SafeAreaView>
   );
 };

@@ -54,7 +54,7 @@ export default function BottomTabs() {
                       fontFamily: 'RedHatDisplay-Medium',
                       fontSize: 14,
                     }}>
-                    Wallet
+                    Dashboard
                   </Text>
                 </View>
               </View>
