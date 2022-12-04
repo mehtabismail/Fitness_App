@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import * as React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import navigationStrings from '../constants/navigationStrings';
