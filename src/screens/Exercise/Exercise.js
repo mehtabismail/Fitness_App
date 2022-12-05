@@ -28,21 +28,6 @@ const Exercise = () => {
   const [resetTimer, setResetTimer] = useState(false);
   const [resetStopwatch, setResetStopwatch] = useState(false);
 
-  const options = {
-    container: {
-      backgroundColor: 'lightblue',
-      padding: 5,
-      borderRadius: 5,
-      width: 200,
-      alignItems: 'center',
-    },
-    text: {
-      fontSize: 25,
-      color: '#FFF',
-      marginLeft: 7,
-    },
-  };
-
   let timer = null;
 
   const dispatch = useDispatch();
@@ -71,7 +56,7 @@ const Exercise = () => {
         blurRadius={1}
         style={styles.imageStyle}>
         <View style={styles.container}>
-          {/* <View
+          <View
             style={{
               backgroundColor: 'lightblue',
               opacity: 0.7,
@@ -89,44 +74,45 @@ const Exercise = () => {
                 fontSize: Fonts.size.h1,
                 fontWeight: 'bold',
               }}>
-              {minutes + ':' + seconds}
+              {seconds}
             </Text>
-          </View> */}
+          </View>
           <View style={styles.sectionStyle}>
             <Stopwatch
               laps
               // msecs
               start={isStopwatchStart}
               reset={resetStopwatch}
-              options={options}
               getTime={time => {
-                console.log(time);
+                setSeconds(time);
               }}
             />
-            <TouchableOpacity
-              style={{backgroundColor: 'green'}}
-              onPress={() => {
-                setIsStopwatchStart(!isStopwatchStart);
-                setResetStopwatch(false);
-              }}>
-              <Text style={styles.buttonText}>
-                {!isStopwatchStart ? 'START' : 'STOP'}
-              </Text>
-            </TouchableOpacity>
-            <TouchableHighlight
-              onPress={() => {
-                setIsStopwatchStart(false);
-                setResetStopwatch(true);
-              }}>
-              <Text style={styles.buttonText}>RESET</Text>
-            </TouchableHighlight>
           </View>
 
-          {/* <TouchableOpacity
+          <TouchableOpacity
             onPress={() => {
-                setIsStopwatchStart(!isStopwatchStart);
-                setResetStopwatch(false);
-              }}
+              setIsStopwatchStart(!isStopwatchStart);
+              setResetStopwatch(false);
+            }}
+            style={{
+              backgroundColor: 'purple',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: '40%',
+              alignSelf: 'center',
+              // marginBottom: 10,
+              borderRadius: 20,
+            }}>
+            <View style={{paddingVertical: 15}}>
+              <Text>{!isStopwatchStart ? 'START' : 'STOP'}</Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => {
+              setIsStopwatchStart(false);
+              setResetStopwatch(true);
+            }}
             style={{
               backgroundColor: 'purple',
               justifyContent: 'center',
@@ -137,9 +123,9 @@ const Exercise = () => {
               borderRadius: 20,
             }}>
             <View style={{paddingVertical: 15}}>
-              <Text>{!isStopwatchStart ? 'START' : 'STOP'}</Text>
+              <Text>End Exercise</Text>
             </View>
-          </TouchableOpacity> */}
+          </TouchableOpacity>
         </View>
       </ImageBackground>
     </View>
