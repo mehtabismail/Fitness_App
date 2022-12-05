@@ -7,5 +7,6 @@ export default {
   DRAWER: 'DrawerNavigation',
   DASHBOARD: 'Dashboard',
   PROFILE: 'Profile',
+  EXERCISE: 'Exercise',
   BOTTOM_TABS: 'BottomTabs',
 };

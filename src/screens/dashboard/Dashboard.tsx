@@ -1,3 +1,5 @@
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prettier/prettier */
 import {ImageBackground, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect} from 'react';
@@ -12,9 +14,8 @@ const Profile = () => {
   const auth: any = useSelector(
     (state: RootState) => state?.auth?.Auth_Response,
   );
-  const {firstName}: any = useSelector(
-    (state: RootState) => state?.user?.userData,
-  );
+
+  const userData = useSelector((state: RootState) => state?.user);
 
   const onResult = (QuerySnapshot: any) => {
     console.log('Got Users collection result.', QuerySnapshot._data);
@@ -25,6 +26,7 @@ const Profile = () => {
     console.error(error);
   };
   useEffect(() => {
+    console.log(auth?.user?.uid, 'uid');
     const subscriber = firestore()
       .collection('users')
       .doc(auth?.user?.uid)
@@ -37,17 +39,19 @@ const Profile = () => {
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
       <View>
-        <Text style={styles.textStyle}>Welcome {firstName}</Text>
+        <Text style={styles.textStyle}>
+          Welcome {userData?.userData?.firstName}
+        </Text>
       </View>
-      <ImageBackground
+      {/* <ImageBackground
         source={require('../../assets/Images/myWorkoutBg.png')}
         resizeMode="contain"
-        style={styles.imageStyle}>
-        <View style={styles.container}>
-          <Text>Hello</Text>
-          <View />
-        </View>
-      </ImageBackground>
+        style={styles.imageStyle}> */}
+      <View style={styles.container}>
+        <Text>Hello</Text>
+        <View />
+      </View>
+      {/* </ImageBackground> */}
     </View>
   );
 };

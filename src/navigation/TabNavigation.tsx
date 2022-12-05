@@ -4,10 +4,11 @@ import {StyleSheet, Platform, View, Text} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Colors from '../theme/Colors';
 import navigationStrings from '../constants/navigationStrings';
-import {Dashboard, Profile} from '../screens';
+import {Dashboard, Exercise, Profile} from '../screens';
 import metrics from '../theme/Metrics';
 import DashboardSVG from '../assets/SVG/dashboard.svg';
 import ProfileSVG from '../assets/SVG/profile.svg';
+import Dumbell from '../assets/SVG/dumbell.svg';
 // import metrics from '../theme/Metrics';
 
 const Tab = createBottomTabNavigator();
@@ -55,6 +56,38 @@ export default function BottomTabs() {
                       fontSize: 14,
                     }}>
                     Dashboard
+                  </Text>
+                </View>
+              </View>
+            );
+          },
+        }}
+      />
+
+      {/* GYM-EXERCIZE SCREEN STACK */}
+      <Tab.Screen
+        name={navigationStrings.EXERCISE}
+        component={Exercise}
+        options={{
+          title: navigationStrings.EXERCISE,
+          tabBarIcon: ({focused}: any) => {
+            return (
+              <View style={styles.tabBarStyle}>
+                <View>
+                  <Dumbell
+                    height={30}
+                    width={30}
+                    fill={focused ? Colors.Primary : Colors.Secondary}
+                  />
+                </View>
+                <View>
+                  <Text
+                    style={{
+                      color: focused ? Colors.Primary : Colors.Secondary,
+                      fontFamily: 'RedHatDisplay-Medium',
+                      fontSize: 14,
+                    }}>
+                    Exercize
                   </Text>
                 </View>
               </View>
