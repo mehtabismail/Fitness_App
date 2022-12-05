@@ -17,6 +17,8 @@ import {RootState} from '../../redux/Store';
 import firestore from '@react-native-firebase/firestore';
 import {storeUserData} from '../../redux/reducers/auth/UserSlice';
 import {Stopwatch, Timer} from 'react-native-stopwatch-timer';
+import Modal from 'react-native-modal';
+import RenderModal from './RenderModal';
 
 const Exercise = () => {
   const [start, setStart] = useState(false);
@@ -27,27 +29,17 @@ const Exercise = () => {
   const [timerDuration, setTimerDuration] = useState(90000);
   const [resetTimer, setResetTimer] = useState(false);
   const [resetStopwatch, setResetStopwatch] = useState(false);
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
 
   let timer = null;
 
   const dispatch = useDispatch();
   const auth = useSelector(state => state?.auth?.Auth_Response);
 
-  useEffect(() => {
-    if (start === true) {
-      timer = setInterval(() => {
-        setSeconds(seconds + 1);
-        // if (seconds <= 60) {
-        //   setSeconds(seconds + 1);
-        //   console.log('time starts', seconds);
-        // } else {
-        //   setMinutes(minutes + 1);
-        //   setSeconds(seconds + 1);
-        // }
-      }, 1000);
-    }
-    return () => clearInterval(timer);
-  }, [start]);
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
       <ImageBackground
@@ -56,6 +48,9 @@ const Exercise = () => {
         blurRadius={1}
         style={styles.imageStyle}>
         <View style={styles.container}>
+          <Modal isVisible={isModalVisible}>
+            <RenderModal time={seconds} />
+          </Modal>
           <View
             style={{
               backgroundColor: 'lightblue',
@@ -100,7 +95,6 @@ const Exercise = () => {
               alignItems: 'center',
               width: '40%',
               alignSelf: 'center',
-              // marginBottom: 10,
               borderRadius: 20,
             }}>
             <View style={{paddingVertical: 15}}>
@@ -111,7 +105,8 @@ const Exercise = () => {
           <TouchableOpacity
             onPress={() => {
               setIsStopwatchStart(false);
-              setResetStopwatch(true);
+              toggleModal();
+              // setResetStopwatch(true);
             }}
             style={{
               backgroundColor: 'purple',
