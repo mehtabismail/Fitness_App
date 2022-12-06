@@ -8,5 +8,6 @@ export default {
   DASHBOARD: 'Dashboard',
   PROFILE: 'Profile',
   EXERCISE: 'Exercise',
+  HISTORY: 'History',
   BOTTOM_TABS: 'BottomTabs',
 };

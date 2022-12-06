@@ -1,15 +1,24 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prettier/prettier */
-import {ImageBackground, StyleSheet, Text, View} from 'react-native';
+import {
+  ImageBackground,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React, {useEffect} from 'react';
 import Fonts from '../../theme/Fonts';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../redux/Store';
 import firestore from '@react-native-firebase/firestore';
 import {storeUserData} from '../../redux/reducers/auth/UserSlice';
+import {Shadow} from '../../components/styles/ScreenStyle';
+import Colors from '../../theme/Colors';
+import navigationStrings from '../../constants/navigationStrings';
 
-const Profile = () => {
+const Profile = ({navigation}: any) => {
   const dispatch = useDispatch();
   const auth: any = useSelector(
     (state: RootState) => state?.auth?.Auth_Response,
@@ -43,15 +52,52 @@ const Profile = () => {
           Welcome {userData?.userData?.firstName}
         </Text>
       </View>
-      {/* <ImageBackground
-        source={require('../../assets/Images/myWorkoutBg.png')}
-        resizeMode="contain"
-        style={styles.imageStyle}> */}
       <View style={styles.container}>
-        <Text>Hello</Text>
-        <View />
+        <View style={styles.boxList}>
+          <TouchableOpacity style={[Shadow, styles.box]}>
+            <Text
+              style={{
+                color: Colors.Primary,
+                fontWeight: 'bold',
+                fontSize: Fonts.size.large,
+              }}>
+              Exercises
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={[Shadow, styles.box]}>
+            <Text
+              style={{
+                color: Colors.Primary,
+                fontWeight: 'bold',
+                fontSize: Fonts.size.large,
+              }}>
+              Fruits & Calories
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={[Shadow, styles.box]}>
+            <Text
+              style={{
+                color: Colors.Primary,
+                fontWeight: 'bold',
+                fontSize: Fonts.size.large,
+              }}>
+              BMI Calculator
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.navigate(navigationStrings.HISTORY)}
+            style={[Shadow, styles.box]}>
+            <Text
+              style={{
+                color: Colors.Primary,
+                fontWeight: 'bold',
+                fontSize: Fonts.size.large,
+              }}>
+              History
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
-      {/* </ImageBackground> */}
     </View>
   );
 };
@@ -71,4 +117,21 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   imageStyle: {width: '100%', height: '100%'},
+  box: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 20,
+    height: 150,
+    width: 150,
+    backgroundColor: 'white',
+    margin: 10,
+  },
+  boxList: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    marginTop: 100,
+  },
 });

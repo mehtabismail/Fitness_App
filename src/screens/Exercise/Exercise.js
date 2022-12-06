@@ -19,6 +19,7 @@ import {storeUserData} from '../../redux/reducers/auth/UserSlice';
 import {Stopwatch, Timer} from 'react-native-stopwatch-timer';
 import Modal from 'react-native-modal';
 import RenderModal from './RenderModal';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 const Exercise = () => {
   const [start, setStart] = useState(false);
@@ -30,6 +31,16 @@ const Exercise = () => {
   const [resetTimer, setResetTimer] = useState(false);
   const [resetStopwatch, setResetStopwatch] = useState(false);
   const [isModalVisible, setModalVisible] = useState(false);
+
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([
+    {label: 'Legs', value: 'Legs'},
+    {label: 'Chest', value: 'Chest'},
+    {label: 'Back', value: 'Back'},
+    {label: 'Shoulder', value: 'Shoulder'},
+    {label: 'Bicep & Tricep', value: 'Bicep & Tricep'},
+  ]);
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -49,8 +60,31 @@ const Exercise = () => {
         style={styles.imageStyle}>
         <View style={styles.container}>
           <Modal isVisible={isModalVisible}>
-            <RenderModal time={seconds} />
+            <RenderModal
+              time={seconds}
+              day={value}
+              close={toggleModal}
+              resetStopwatch={setResetStopwatch}
+            />
           </Modal>
+          <View
+            style={{
+              width: '60%',
+              alignSelf: 'center',
+              marginTop: 20,
+              opacity: 0.4,
+              zIndex: 100,
+            }}>
+            <DropDownPicker
+              placeholder="Exercise Day"
+              open={open}
+              value={value}
+              items={items}
+              setOpen={setOpen}
+              setValue={setValue}
+              setItems={setItems}
+            />
+          </View>
           <View
             style={{
               backgroundColor: 'lightblue',
@@ -104,9 +138,10 @@ const Exercise = () => {
 
           <TouchableOpacity
             onPress={() => {
-              setIsStopwatchStart(false);
-              toggleModal();
-              // setResetStopwatch(true);
+              if (seconds != '00:00:00' && !!value) {
+                setIsStopwatchStart(false);
+                toggleModal();
+              }
             }}
             style={{
               backgroundColor: 'purple',

@@ -6,6 +6,7 @@ import PortfolioSummarySlice from './reducers/dashboard/PortfolioSummarySlice';
 import RecommendationSlice from './reducers/dashboard/RecommendationSlice';
 import authSlice from './reducers/auth/AuthSlice';
 import userSlice from './reducers/auth/UserSlice';
+import HistorySlice from './reducers/history/HistorySlice';
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     auth: authSlice,
     user: userSlice,
     counter: CounterSlice,
+    history: HistorySlice,
     loading: Loading,
     portfolioDashboard: PortfolioSummarySlice,
     recommendationsDashboard: RecommendationSlice,
