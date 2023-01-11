@@ -4,7 +4,7 @@ import React from 'react';
 import Colors from '../theme/Colors';
 import {InputProp} from './Types';
 
-const CustomTextInput = (props: InputProp) => {
+const CustomTextInput = props => {
   return (
     <View>
       <TextInput
@@ -19,7 +19,7 @@ const CustomTextInput = (props: InputProp) => {
         keyboardType={props?.keyboardType ? props?.keyboardType : 'default'}
         editable={props?.disabled && props?.disabled === 'true' ? false : true}
         secureTextEntry={!props?.passShowHide ? props?.secureTextEntry : false}
-        onChangeText={(value: Number | string) =>
+        onChangeText={value =>
           props?.handleChangeInput(value, props?.fieldName)
         }
       />

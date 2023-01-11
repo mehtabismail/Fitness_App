@@ -10,48 +10,46 @@ import CustomButton from '../../components/CustomButton';
 import {useDispatch} from 'react-redux';
 import {startLoading, stopLoading} from '../../redux/reducers/loading/Loading';
 import navigationStrings from '../../constants/navigationStrings';
-import {NavigationProp} from '../../components/Types';
-import {LoginProp} from './Types';
 import {validateEmptyFields} from '../../utils/formValidator';
 import isEmpty from '../../utils/isEmpty';
 import auth from '@react-native-firebase/auth';
 import {storeAuth} from '../../redux/reducers/auth/AuthSlice';
 
-const FormContainer = ({navigation}: NavigationProp) => {
-  const [formData, setFormData] = useState<LoginProp>({
+const FormContainer = ({navigation}) => {
+  const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
-  const [errors, setErrors] = useState<any>({});
-  const errorMessages: any = {
+  const [errors, setErrors] = useState({});
+  const errorMessages = {
     email: 'Email',
     password: 'Password',
   };
 
   const dispatch = useDispatch();
 
-  const handleChangeInput = (value: string | Number, fieldName: string) => {
+  const handleChangeInput = (value, fieldName) => {
     setFormData({...formData, [fieldName]: value});
   };
 
-  const removeError = (props: any) => {
+  const removeError = props => {
     console.log(props);
   };
 
   const onClickHandler = async () => {
     const error = validateEmptyFields({...formData}, errorMessages);
     setErrors(error);
-    const formState: LoginProp = {
+    const formState = {
       ...formData,
     };
     if (isEmpty(error)) {
       try {
         dispatch(startLoading());
-        let email: string = formState.email.replace(/^\s+|\s+$/gm, '');
+        let email = formState.email.replace(/^\s+|\s+$/gm, '');
         try {
           auth()
             .signInWithEmailAndPassword(email, formState.password)
-            .then((res: any) => {
+            .then(res => {
               dispatch(storeAuth(res));
               dispatch(stopLoading());
               navigation.replace(navigationStrings.DRAWER);
@@ -60,7 +58,7 @@ const FormContainer = ({navigation}: NavigationProp) => {
         } catch (error) {
           Alert.alert(error);
         }
-      } catch (error: any) {
+      } catch (error) {
         console.log(error, 'catch block');
         Alert.alert(error);
       }

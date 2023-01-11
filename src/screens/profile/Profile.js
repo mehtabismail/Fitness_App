@@ -5,7 +5,7 @@ import React from 'react';
 import navigationStrings from '../../constants/navigationStrings';
 
 const Profile = () => {
-  const navigation: any = useNavigation();
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <Text style={styles.textStyle}>Profile Screen component</Text>

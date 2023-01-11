@@ -10,8 +10,8 @@ import {useSelector} from 'react-redux';
 import {RootState} from '../redux/Store';
 import {ButtonProp} from './Types';
 
-const CustomButton = (props: ButtonProp) => {
-  const loading = useSelector((state: RootState) => state?.loading?.isLoading);
+const CustomButton = props => {
+  const loading = useSelector(state => state?.loading?.isLoading);
   return (
     <View
       style={[

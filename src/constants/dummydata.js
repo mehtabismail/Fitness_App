@@ -1,4 +1,4 @@
-export const month_names_short: any = {
+export const month_names_short = {
   1: 'jan',
   2: 'Feb',
   3: 'Mar',

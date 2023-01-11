@@ -5,25 +5,21 @@ import CustomTextInput from '../../components/CustomTextInput';
 import Colors from '../../theme/Colors';
 import CustomButton from '../../components/CustomButton';
 import metrics from '../../theme/Metrics';
-import {NavigationProp} from '../../components/Types';
 import {useDispatch} from 'react-redux';
 import {startLoading, stopLoading} from '../../redux/reducers/loading/Loading';
-import {SignupProp} from './Types';
 import {validateEmptyFields} from '../../utils/formValidator';
 import isEmpty from '../../utils/isEmpty';
 import auth from '@react-native-firebase/auth';
-import navigationStrings from '../../constants/navigationStrings';
-import {storeAuth} from '../../redux/reducers/auth/AuthSlice';
 import firestore from '@react-native-firebase/firestore';
 
-const SignupForm = ({navigation}: NavigationProp) => {
-  const [formData, setFormData] = useState<SignupProp>({
+const SignupForm = ({navigation}) => {
+  const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
     email: '',
     password: '',
   });
-  const [errors, setErrors] = useState<any>({});
+  const [errors, setErrors] = useState({});
   const errorMessages = {
     firstName: 'First name',
     lastName: 'Last name',
@@ -33,15 +29,15 @@ const SignupForm = ({navigation}: NavigationProp) => {
 
   const dispatch = useDispatch();
 
-  const handleChangeInput = (value: string | Number, fieldName: string) => {
+  const handleChangeInput = (value, fieldName) => {
     setFormData({...formData, [fieldName]: value});
   };
 
-  const removeError = (props: any) => {
+  const removeError = props => {
     console.log(props);
   };
 
-  const onClickHandler = async (props: any) => {
+  const onClickHandler = async props => {
     const error = validateEmptyFields({...formData}, errorMessages);
     setErrors(error);
 

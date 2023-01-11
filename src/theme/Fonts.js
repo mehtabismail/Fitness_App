@@ -14,7 +14,6 @@ const size = {
   label: 11,
 };
 
-
 export default {
-  size
+  size,
 };

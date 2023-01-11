@@ -1,9 +1,8 @@
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import BackArrow from '../../assets/SVG/back_arrow.svg';
-import {NavigationProp} from '../../components/Types';
 
-const Header = ({navigation}: NavigationProp) => {
+const Header = ({navigation}) => {
   return (
     <View>
       <TouchableOpacity

@@ -1,4 +1,4 @@
-const theme_id: string = 'theme_1';
+const theme_id = 'theme_1';
 var Primary,
   PrimaryDark,
   placeholderTextColor,

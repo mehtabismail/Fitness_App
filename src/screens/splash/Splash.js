@@ -9,14 +9,14 @@ import Colors from '../../theme/Colors';
 import LinearGradient from 'react-native-linear-gradient';
 
 // MAIN FUNCTION
-const Splash = ({navigation}: any): JSX.Element => {
+const Splash = ({navigation}) => {
   // Set an initializing state whilst Firebase connects
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
 
   console.log(user);
 
-  function onAuthStateChanged(user: any) {
+  function onAuthStateChanged(user) {
     setUser(user);
     if (user === null) {
       setTimeout(() => {

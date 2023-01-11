@@ -9,8 +9,8 @@ import auth from '@react-native-firebase/auth';
 import {useNavigation} from '@react-navigation/native';
 import navigationStrings from '../constants/navigationStrings';
 
-const CustomDrawer = (props: any) => {
-  const navigation: any = useNavigation();
+const CustomDrawer = props => {
+  const navigation = useNavigation();
   return (
     <View style={styles.mainContainer}>
       <View style={{flex: 1}}>

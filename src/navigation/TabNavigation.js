@@ -38,7 +38,7 @@ export default function BottomTabs() {
         component={Dashboard}
         options={{
           title: navigationStrings.DASHBOARD,
-          tabBarIcon: ({focused}: any) => {
+          tabBarIcon: ({focused}) => {
             return (
               <View style={styles.tabBarStyle}>
                 <View>
@@ -70,7 +70,7 @@ export default function BottomTabs() {
         component={Exercise}
         options={{
           title: navigationStrings.EXERCISE,
-          tabBarIcon: ({focused}: any) => {
+          tabBarIcon: ({focused}) => {
             return (
               <View style={styles.tabBarStyle}>
                 <View>
@@ -102,7 +102,7 @@ export default function BottomTabs() {
         component={Profile}
         options={{
           title: navigationStrings.PROFILE,
-          tabBarIcon: ({focused}: any) => {
+          tabBarIcon: ({focused}) => {
             return (
               <View style={styles.tabBarStyle}>
                 <View>

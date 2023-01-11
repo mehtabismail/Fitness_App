@@ -5,7 +5,7 @@ import {NavigationProp} from '../../components/Types';
 import SignupForm from './SignupForm';
 import Header from './Header';
 
-const Signup = ({navigation}: NavigationProp) => {
+const Signup = ({navigation}) => {
   return (
     <SafeAreaView style={mainStyle}>
       <Header navigation={navigation} />

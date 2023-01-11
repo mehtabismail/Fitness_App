@@ -12,7 +12,7 @@ import metrics from '../../theme/Metrics';
 import Colors from '../../theme/Colors';
 import navigationStrings from '../../constants/navigationStrings';
 
-const Login = ({navigation}: any) => {
+const Login = ({navigation}) => {
   return (
     <SafeAreaView style={mainStyle}>
       <View style={styles.container}>

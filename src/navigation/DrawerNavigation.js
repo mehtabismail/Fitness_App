@@ -12,7 +12,7 @@ const Drawer = createDrawerNavigator();
 export default function DrawerNavigation() {
   return (
     <Drawer.Navigator
-      drawerContent={(props: any) => <CustomDrawer {...props} />}
+      drawerContent={props => <CustomDrawer {...props} />}
       screenOptions={{
         drawerLabelStyle: {marginLeft: -20},
         drawerStyle: {
