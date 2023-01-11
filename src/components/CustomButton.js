@@ -7,8 +7,6 @@ import {
 } from 'react-native';
 import React from 'react';
 import {useSelector} from 'react-redux';
-import {RootState} from '../redux/Store';
-import {ButtonProp} from './Types';
 
 const CustomButton = props => {
   const loading = useSelector(state => state?.loading?.isLoading);

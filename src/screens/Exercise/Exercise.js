@@ -53,111 +53,105 @@ const Exercise = () => {
 
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
-      <ImageBackground
-        source={require('../../assets/Images/myWorkoutBg.png')}
-        resizeMode="contain"
-        blurRadius={1}
-        style={styles.imageStyle}>
-        <View style={styles.container}>
-          <Modal isVisible={isModalVisible}>
-            <RenderModal
-              time={seconds}
-              day={value}
-              close={toggleModal}
-              resetStopwatch={setResetStopwatch}
-            />
-          </Modal>
-          <View
-            style={{
-              width: '60%',
-              alignSelf: 'center',
-              marginTop: 20,
-              opacity: 0.4,
-              zIndex: 100,
-            }}>
-            <DropDownPicker
-              placeholder="Exercise Day"
-              open={open}
-              value={value}
-              items={items}
-              setOpen={setOpen}
-              setValue={setValue}
-              setItems={setItems}
-            />
-          </View>
-          <View
-            style={{
-              backgroundColor: 'lightblue',
-              opacity: 0.7,
-              width: '80%',
-              height: '40%',
-              borderRadius: 1000,
-              alignSelf: 'center',
-              marginTop: '40%',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <Text
-              style={{
-                color: 'black',
-                fontSize: Fonts.size.h1,
-                fontWeight: 'bold',
-              }}>
-              {seconds}
-            </Text>
-          </View>
-          <View style={styles.sectionStyle}>
-            <Stopwatch
-              laps
-              // msecs
-              start={isStopwatchStart}
-              reset={resetStopwatch}
-              getTime={time => {
-                setSeconds(time);
-              }}
-            />
-          </View>
-
-          <TouchableOpacity
-            onPress={() => {
-              setIsStopwatchStart(!isStopwatchStart);
-              setResetStopwatch(false);
-            }}
-            style={{
-              backgroundColor: 'purple',
-              justifyContent: 'center',
-              alignItems: 'center',
-              width: '40%',
-              alignSelf: 'center',
-              borderRadius: 20,
-            }}>
-            <View style={{paddingVertical: 15}}>
-              <Text>{!isStopwatchStart ? 'START' : 'STOP'}</Text>
-            </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            onPress={() => {
-              if (seconds != '00:00:00' && !!value) {
-                setIsStopwatchStart(false);
-                toggleModal();
-              }
-            }}
-            style={{
-              backgroundColor: 'purple',
-              justifyContent: 'center',
-              alignItems: 'center',
-              width: '40%',
-              alignSelf: 'center',
-              marginBottom: 20,
-              borderRadius: 20,
-            }}>
-            <View style={{paddingVertical: 15}}>
-              <Text>End Exercise</Text>
-            </View>
-          </TouchableOpacity>
+      <View style={styles.container}>
+        <Modal isVisible={isModalVisible}>
+          <RenderModal
+            time={seconds}
+            day={value}
+            close={toggleModal}
+            resetStopwatch={setResetStopwatch}
+          />
+        </Modal>
+        <View
+          style={{
+            width: '60%',
+            alignSelf: 'center',
+            marginTop: 20,
+            opacity: 0.4,
+            zIndex: 100,
+          }}>
+          <DropDownPicker
+            placeholder="Exercise Day"
+            open={open}
+            value={value}
+            items={items}
+            setOpen={setOpen}
+            setValue={setValue}
+            setItems={setItems}
+          />
         </View>
-      </ImageBackground>
+        <View
+          style={{
+            backgroundColor: 'lightblue',
+            opacity: 0.7,
+            width: '80%',
+            height: '40%',
+            borderRadius: 1000,
+            alignSelf: 'center',
+            marginTop: '40%',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Text
+            style={{
+              color: 'black',
+              fontSize: Fonts.size.h1,
+              fontWeight: 'bold',
+            }}>
+            {seconds}
+          </Text>
+        </View>
+        <View style={styles.sectionStyle}>
+          <Stopwatch
+            laps
+            // msecs
+            start={isStopwatchStart}
+            reset={resetStopwatch}
+            getTime={time => {
+              setSeconds(time);
+            }}
+          />
+        </View>
+
+        <TouchableOpacity
+          onPress={() => {
+            setIsStopwatchStart(!isStopwatchStart);
+            setResetStopwatch(false);
+          }}
+          style={{
+            backgroundColor: 'purple',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '40%',
+            alignSelf: 'center',
+            borderRadius: 20,
+          }}>
+          <View style={{paddingVertical: 15}}>
+            <Text>{!isStopwatchStart ? 'START' : 'STOP'}</Text>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={() => {
+            if (seconds != '00:00:00' && !!value) {
+              setIsStopwatchStart(false);
+              toggleModal();
+            }
+          }}
+          style={{
+            backgroundColor: 'purple',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '40%',
+            alignSelf: 'center',
+            marginBottom: 20,
+            borderRadius: 20,
+          }}>
+          <View style={{paddingVertical: 15}}>
+            <Text>End Exercise</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };

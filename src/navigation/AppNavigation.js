@@ -2,7 +2,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import navigationStrings from '../constants/navigationStrings';
-import {Dashboard, History, Login, Splash} from '../screens';
+import {Dashboard, History, Login, Splash, BmiCalculator} from '../screens';
 // import BottomTabs from './TabNavigation';
 import DrawerNavigation from './DrawerNavigation';
 import Signup from '../screens/auth/Signup';
@@ -45,6 +45,11 @@ const AppNavigation = () => {
         <Stack.Screen
           name={navigationStrings.HISTORY}
           component={History}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name={navigationStrings.BMI}
+          component={BmiCalculator}
           options={{headerShown: false}}
         />
 

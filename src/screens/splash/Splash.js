@@ -1,5 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import {ImageBackground, SafeAreaView, StyleSheet, View} from 'react-native';
+import {
+  Alert,
+  ImageBackground,
+  SafeAreaView,
+  StyleSheet,
+  View,
+} from 'react-native';
 import React, {useState} from 'react';
 import {mainStyle} from '../../components/styles/ScreenStyle';
 import navigationStrings from '../../constants/navigationStrings';
@@ -7,6 +13,7 @@ import auth from '@react-native-firebase/auth';
 import CustomButton from '../../components/CustomButton';
 import Colors from '../../theme/Colors';
 import LinearGradient from 'react-native-linear-gradient';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // MAIN FUNCTION
 const Splash = ({navigation}) => {
@@ -16,6 +23,15 @@ const Splash = ({navigation}) => {
 
   console.log(user);
 
+  const storeData = async value => {
+    try {
+      await AsyncStorage.setItem('loggedInUser', value);
+    } catch (e) {
+      // saving error
+      Alert.alert(e);
+    }
+  };
+
   function onAuthStateChanged(user) {
     setUser(user);
     if (user === null) {
@@ -23,6 +39,7 @@ const Splash = ({navigation}) => {
         navigation.replace(navigationStrings.LOGIN);
       }, 0);
     } else {
+      console.log(user, 'found user to go again');
       navigation.replace(navigationStrings.BOTTOM_TABS);
     }
     if (initializing) {

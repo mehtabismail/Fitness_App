@@ -3,14 +3,20 @@ import auth from '@react-native-firebase/auth';
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import navigationStrings from '../../constants/navigationStrings';
+import Colors from '../../theme/Colors';
+import {withSafeAreaInsets} from 'react-native-safe-area-context';
 
 const Profile = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <Text style={styles.textStyle}>Profile Screen component</Text>
       <TouchableOpacity
-        style={{backgroundColor: 'red'}}
+        style={{
+          backgroundColor: Colors.Primary,
+          paddingVertical: 20,
+          paddingHorizontal: 40,
+          borderRadius: 20,
+        }}
         onPress={() =>
           auth()
             .signOut()
@@ -21,7 +27,9 @@ const Profile = () => {
               }),
             )
         }>
-        <Text>Log out</Text>
+        <Text style={{color: 'white', fontWeight: 'bold', fontSize: 20}}>
+          Log out
+        </Text>
       </TouchableOpacity>
     </View>
   );

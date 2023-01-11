@@ -10,4 +10,5 @@ export default {
   EXERCISE: 'Exercise',
   HISTORY: 'History',
   BOTTOM_TABS: 'BottomTabs',
+  BMI: 'BmiCalculator',
 };

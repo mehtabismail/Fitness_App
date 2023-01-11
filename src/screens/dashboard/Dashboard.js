@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prettier/prettier */
 import {
+  Alert,
   ImageBackground,
   StyleSheet,
   Text,
@@ -17,23 +18,35 @@ import {storeUserData} from '../../redux/reducers/auth/UserSlice';
 import {Shadow} from '../../components/styles/ScreenStyle';
 import Colors from '../../theme/Colors';
 import navigationStrings from '../../constants/navigationStrings';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const Profile = ({navigation}: any) => {
+const Profile = ({navigation}) => {
   const dispatch = useDispatch();
-  const auth: any = useSelector(
-    (state: RootState) => state?.auth?.Auth_Response,
-  );
+  const auth = useSelector(state => state?.auth?.Auth_Response);
 
-  const userData = useSelector((state: RootState) => state?.user);
+  const userData = useSelector(state => state?.user);
 
-  const onResult = (QuerySnapshot: any) => {
+  const onResult = QuerySnapshot => {
     console.log('Got Users collection result.', QuerySnapshot._data);
     dispatch(storeUserData(QuerySnapshot?._data));
   };
 
-  const onError = (error: any) => {
+  const getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('loggedInUser');
+      if (value !== null) {
+        // value previously stored
+        console.log('user found' + value);
+      }
+    } catch (e) {
+      // error reading value
+    }
+  };
+
+  const onError = error => {
     console.error(error);
   };
+
   useEffect(() => {
     console.log(auth?.user?.uid, 'uid');
     const subscriber = firestore()
@@ -47,14 +60,12 @@ const Profile = ({navigation}: any) => {
   }, [auth?.user?.uid]);
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
-      <View>
-        <Text style={styles.textStyle}>
-          Welcome {userData?.userData?.firstName}
-        </Text>
+      <View style={{alignItems: 'center', paddingTop: 20}}>
+        <Text style={styles.textStyle}>Welcome to Fitness Pro</Text>
       </View>
       <View style={styles.container}>
         <View style={styles.boxList}>
-          <TouchableOpacity style={[Shadow, styles.box]}>
+          {/* <TouchableOpacity style={[Shadow, styles.box]}>
             <Text
               style={{
                 color: Colors.Primary,
@@ -63,8 +74,8 @@ const Profile = ({navigation}: any) => {
               }}>
               Exercises
             </Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[Shadow, styles.box]}>
+          </TouchableOpacity> */}
+          {/* <TouchableOpacity style={[Shadow, styles.box]}>
             <Text
               style={{
                 color: Colors.Primary,
@@ -73,8 +84,10 @@ const Profile = ({navigation}: any) => {
               }}>
               Fruits & Calories
             </Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[Shadow, styles.box]}>
+          </TouchableOpacity> */}
+          <TouchableOpacity
+            onPress={() => navigation.navigate(navigationStrings.BMI)}
+            style={[Shadow, styles.box]}>
             <Text
               style={{
                 color: Colors.Primary,

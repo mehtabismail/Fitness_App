@@ -1,7 +1,6 @@
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {mainStyle, textStyle} from '../../components/styles/ScreenStyle';
-import {NavigationProp} from '../../components/Types';
 import SignupForm from './SignupForm';
 import Header from './Header';
 
