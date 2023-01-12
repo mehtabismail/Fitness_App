@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   TouchableHighlight,
   View,
+  Alert,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import Fonts from '../../theme/Fonts';
@@ -136,6 +137,8 @@ const Exercise = () => {
             if (seconds != '00:00:00' && !!value) {
               setIsStopwatchStart(false);
               toggleModal();
+            } else {
+              Alert.alert('Select Exercise Day');
             }
           }}
           style={{

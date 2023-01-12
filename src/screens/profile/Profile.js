@@ -5,9 +5,13 @@ import React from 'react';
 import navigationStrings from '../../constants/navigationStrings';
 import Colors from '../../theme/Colors';
 import {withSafeAreaInsets} from 'react-native-safe-area-context';
+import {useDispatch} from 'react-redux';
+import {stopLoading} from '../../redux/reducers/loading/Loading';
 
 const Profile = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -17,7 +21,8 @@ const Profile = () => {
           paddingHorizontal: 40,
           borderRadius: 20,
         }}
-        onPress={() =>
+        onPress={() => {
+          dispatch(stopLoading());
           auth()
             .signOut()
             .then(() =>
@@ -25,8 +30,8 @@ const Profile = () => {
                 index: 0,
                 routes: [{name: navigationStrings.LOGIN}],
               }),
-            )
-        }>
+            );
+        }}>
         <Text style={{color: 'white', fontWeight: 'bold', fontSize: 20}}>
           Log out
         </Text>

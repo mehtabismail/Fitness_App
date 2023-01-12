@@ -53,6 +53,7 @@ export default class BmiCalculator extends React.Component {
             <View style={styles.intro}>
               <TextInput
                 placeholder="Enter Height"
+                placeholderTextColor={'grey'}
                 keyboardType="numeric"
                 style={styles.input}
                 onChangeText={height => {
@@ -61,6 +62,7 @@ export default class BmiCalculator extends React.Component {
               />
               <TextInput
                 placeholder="Enter Mass"
+                placeholderTextColor={'grey'}
                 keyboardType="numeric"
                 style={styles.input}
                 onChangeText={mass => {

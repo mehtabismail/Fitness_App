@@ -43,11 +43,11 @@ const SignupForm = ({navigation}) => {
 
     if (isEmpty(error)) {
       try {
-        console.log(formData, 'hello checking');
         dispatch(startLoading());
         auth()
           .createUserWithEmailAndPassword(formData.email, formData.password)
           .then(async res => {
+            auth().currentUser.updateProfile({displayName: formData.firstName});
             firestore()
               .collection('users')
               .doc(res.user.uid)
@@ -56,8 +56,8 @@ const SignupForm = ({navigation}) => {
                 lastName: formData.lastName,
                 email: formData.email,
               })
-              .then(() => {
-                console.log('User added!');
+              .then(result => {
+                console.log('User added successfully!');
               });
           })
           .catch(error => {

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prettier/prettier */
@@ -9,7 +10,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Fonts from '../../theme/Fonts';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../redux/Store';
@@ -19,33 +20,32 @@ import {Shadow} from '../../components/styles/ScreenStyle';
 import Colors from '../../theme/Colors';
 import navigationStrings from '../../constants/navigationStrings';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import firebase from '@react-native-firebase/app';
 
 const Profile = ({navigation}) => {
+  const [displayName, setDisplayName] = useState('');
   const dispatch = useDispatch();
   const auth = useSelector(state => state?.auth?.Auth_Response);
 
   const userData = useSelector(state => state?.user);
+
+  console.log(userData?.userData?.firstName, 'checking');
 
   const onResult = QuerySnapshot => {
     console.log('Got Users collection result.', QuerySnapshot._data);
     dispatch(storeUserData(QuerySnapshot?._data));
   };
 
-  const getData = async () => {
-    try {
-      const value = await AsyncStorage.getItem('loggedInUser');
-      if (value !== null) {
-        // value previously stored
-        console.log('user found' + value);
-      }
-    } catch (e) {
-      // error reading value
-    }
-  };
-
   const onError = error => {
     console.error(error);
   };
+
+  useEffect(() => {
+    const user = firebase.auth().currentUser;
+    if (user) {
+      setDisplayName(user?.displayName);
+    }
+  }, [firebase.auth().currentUser.displayName]);
 
   useEffect(() => {
     console.log(auth?.user?.uid, 'uid');
@@ -61,7 +61,7 @@ const Profile = ({navigation}) => {
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
       <View style={{alignItems: 'center', paddingTop: 20}}>
-        <Text style={styles.textStyle}>Welcome to Fitness Pro</Text>
+        <Text style={styles.textStyle}>{'Welcome ' + displayName}</Text>
       </View>
       <View style={styles.container}>
         <View style={styles.boxList}>
